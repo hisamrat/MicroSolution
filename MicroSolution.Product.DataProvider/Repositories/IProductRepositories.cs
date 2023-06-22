@@ -2,7 +2,7 @@
 using MicroSolution.Infrastructure.Event.Product;
 using System.Threading.Tasks;
 
-namespace MicroSolution.Product.Api.Repositories
+namespace MicroSolution.Product.DataProvider.Repositories
 {
     public interface IProductRepositories
     {

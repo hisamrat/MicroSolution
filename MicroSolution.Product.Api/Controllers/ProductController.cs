@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MicroSolution.Infrastructure.Command.Product;
-using MicroSolution.Product.Api.Services;
+using MicroSolution.Product.DataProvider.Services;
 using System.Threading.Tasks;
 
 namespace MicroSolution.Product.Api.Controllers

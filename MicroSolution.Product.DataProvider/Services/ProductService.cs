@@ -1,9 +1,10 @@
-﻿using MicroSolution.Infrastructure.Command.Product;
+﻿
+using MicroSolution.Infrastructure.Command.Product;
 using MicroSolution.Infrastructure.Event.Product;
-using MicroSolution.Product.Api.Repositories;
+using MicroSolution.Product.DataProvider.Repositories;
 using System.Threading.Tasks;
 
-namespace MicroSolution.Product.Api.Services
+namespace MicroSolution.Product.DataProvider.Services
 {
     public class ProductService : IProductService
     {
@@ -20,7 +21,8 @@ namespace MicroSolution.Product.Api.Services
 
         public async Task<ProductCreated> GetProduct(int ProductId)
         {
-            return await _productRepositories.GetProduct(ProductId); ;
+            var dd= await _productRepositories.GetProduct(ProductId);
+            return dd;
         }
     }
 }

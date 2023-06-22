@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroSolution.Product.Api",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroSolution.Infrastructure", "MicroSolution.Infrastructure\MicroSolution.Infrastructure.csproj", "{6331FC29-5F00-48DA-A3C1-09DB61640E40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroSolution.Product.Query.Api", "MicroSolution.Product.Query.Api\MicroSolution.Product.Query.Api.csproj", "{2B254C9D-22CB-4D8D-B467-FC52B10B9E11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroSolution.Product.DataProvider", "MicroSolution.Product.DataProvider\MicroSolution.Product.DataProvider.csproj", "{3666E030-73A0-45C7-AC42-442915265780}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{6331FC29-5F00-48DA-A3C1-09DB61640E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6331FC29-5F00-48DA-A3C1-09DB61640E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6331FC29-5F00-48DA-A3C1-09DB61640E40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B254C9D-22CB-4D8D-B467-FC52B10B9E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B254C9D-22CB-4D8D-B467-FC52B10B9E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B254C9D-22CB-4D8D-B467-FC52B10B9E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B254C9D-22CB-4D8D-B467-FC52B10B9E11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3666E030-73A0-45C7-AC42-442915265780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3666E030-73A0-45C7-AC42-442915265780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3666E030-73A0-45C7-AC42-442915265780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3666E030-73A0-45C7-AC42-442915265780}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

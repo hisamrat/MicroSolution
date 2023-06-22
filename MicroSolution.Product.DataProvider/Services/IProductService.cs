@@ -1,8 +1,9 @@
-﻿using MicroSolution.Infrastructure.Command.Product;
+﻿
+using MicroSolution.Infrastructure.Command.Product;
 using MicroSolution.Infrastructure.Event.Product;
 using System.Threading.Tasks;
 
-namespace MicroSolution.Product.Api.Services
+namespace MicroSolution.Product.DataProvider.Services
 {
     public interface IProductService
     {

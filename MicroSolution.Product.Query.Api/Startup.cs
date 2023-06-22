@@ -1,4 +1,3 @@
-using GreenPipes;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,16 +9,17 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MicroSolution.Infrastructure.EventBus;
+using MicroSolution.Infrastructure.Queries.Product;
 using MicroSolution.Infrastructure.SqlServer;
-using MicroSolution.Product.Api.Handlers;
 using MicroSolution.Product.DataProvider.Repositories;
 using MicroSolution.Product.DataProvider.Services;
+using MicroSolution.Product.Query.Api.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MicroSolution.Product.Api
+namespace MicroSolution.Product.Query.Api
 {
     public class Startup
     {
@@ -34,34 +34,33 @@ namespace MicroSolution.Product.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddControllers();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductRepositories, ProductRepositories>();
 
-            services.AddScoped<CreateProductHandler>();
-            var rabbitmqoption = new RabbitMqOption();
-            Configuration.GetSection("rabbitmq").Bind(rabbitmqoption);
+            services.AddScoped<GetProductByIdHandler>();
+            
+            var rabbitmq = new RabbitMqOption();
+            Configuration.GetSection("rabbitmq").Bind(rabbitmq);
             services.AddMassTransit(x =>
             {
-                x.AddConsumer<CreateProductHandler>();
+                x.AddConsumer<GetProductByIdHandler>();
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    cfg.Host(new Uri(rabbitmqoption.ConnectionString), hostconfig =>
+                    
+                    cfg.Host(new Uri(rabbitmq.ConnectionString), hostcfg =>
                     {
-                        hostconfig.Username(rabbitmqoption.Username);
-                        hostconfig.Password(rabbitmqoption.Password);
+                        hostcfg.Username(rabbitmq.Username);
+                        hostcfg.Password(rabbitmq.Password);
                     });
-                    cfg.ReceiveEndpoint("Create_Product", c =>
-                    {
-                        c.PrefetchCount = 16;
-                        c.UseMessageRetry(retryConfig => { retryConfig.Interval(2, 100); });
-                        c.ConfigureConsumer<CreateProductHandler>(provider);
-                    });
+                    cfg.ConfigureEndpoints(provider);
                 }));
+
             });
-            services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Get Product API", Version = "v1" });
             });
         }
 
@@ -86,9 +85,8 @@ namespace MicroSolution.Product.Api
             busControl.Start();
             app.UseSwagger();
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Product API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Get Product API");
             });
-            
         }
     }
 }

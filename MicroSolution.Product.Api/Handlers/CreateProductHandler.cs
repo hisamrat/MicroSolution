@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using MicroSolution.Infrastructure.Command.Product;
-using MicroSolution.Product.Api.Services;
+
+using MicroSolution.Product.DataProvider.Services;
 using System.Threading.Tasks;
 
 namespace MicroSolution.Product.Api.Handlers
